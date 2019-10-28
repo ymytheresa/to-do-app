@@ -1,32 +1,44 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/new-task']">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Tasks List</ion-title>
-  </ion-toolbar>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="end">
+			<!-- <ion-button (click) = "presentAlert()" [routerLink]="['/new-task']"> -->
+			<ion-button (click)="presentAlert()">
+				<ion-icon slot="icon-only" name="add"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Tasks List</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content *ngIf="items" class="list-mini-content" padding>
-  <div *ngIf="items.length > 0" class="list-mini">
-    <ion-list>
-      <ion-item *ngFor="let item of items" [routerLink]="['/details', item.payload.doc.id]">
-        <ion-thumbnail slot="start">
+	<div *ngIf="items.length > 0" class="list-mini">
+		<ion-list>
+			<!-- change  -->
+			<ion-item-sliding *ngFor="let item of items">
+				<ion-item>
+					<!-- <ion-thumbnail slot="start">
           <img [src]="item.payload.doc.data().image">
-        </ion-thumbnail>
-        <ion-label>{{item.payload.doc.data().title}}</ion-label>
-        <ion-button fill="clear" slot="end">Details</ion-button>
-      </ion-item>
-    </ion-list>
-  </div>
-  <div *ngIf="items.length == 0" class="empty-list">
-    Please create your first task.
-  </div>
+        </ion-thumbnail> -->
+					<ion-label>{{item.payload.doc.data().taskName}}</ion-label>
+					<ion-label>{{item.payload.doc.data().duration}}</ion-label>
+					<ion-label>{{item.payload.doc.data().priority}}</ion-label>
+				</ion-item>
+
+				<ion-item-options side="end">
+					<button ion-button (click)="delete()" [routerLink]="[item.payload.doc.id]">
+						<ion-icon name="trash"></ion-icon>Delete
+					</button>
+				</ion-item-options>
+
+			</ion-item-sliding>
+		</ion-list>
+	</div>
+	<div *ngIf="items.length == 0" class="empty-list">
+		Please create your first task.
+	</div>
 </ion-content>
 <ion-footer (click)="logout()">
-  <ion-toolbar color="medium">
-    <ion-title>Log out</ion-title>
-  </ion-toolbar>
+	<ion-toolbar color="medium">
+		<ion-title>Log out</ion-title>
+	</ion-toolbar>
 </ion-footer>
