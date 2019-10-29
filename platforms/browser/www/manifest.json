@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Ionic 4 Firebase App",
+  "short_name": "Ionic 4 Firebase App",
+  "version": "io.ionic.ionic4FirebaseCrud",
+  "description": "An awesome Ionic/Cordova app.",
+  "author": "IonicThemes Team",
+  "icons": [],
+  "start_url": "index.html"
+}
